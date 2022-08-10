@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Weapons/Gun.gd" type="Script" id=1]
+[ext_resource path="res://Art/Pistol.png" type="Texture" id=2]
+[ext_resource path="res://Weapons/Bullet.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Fire"
+length = 0.05
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04 ),
+"transitions": PoolRealArray( 0, 0, 0 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reset_weapon"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[node name="Gun" type="Node2D"]
+script = ExtResource( 1 )
+Bullet = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 7, 0 )
+texture = ExtResource( 2 )
+hframes = 4
+
+[node name="Muzzle" type="Node2D" parent="."]
+position = Vector2( 18, 0 )
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Fire = SubResource( 1 )
+anims/Idle = SubResource( 2 )

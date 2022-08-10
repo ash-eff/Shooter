@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Tapes/TapePickup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Art/gfx_robo.png" type="Texture" id=2]
+[ext_resource path="res://Weapons/Auto9.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Tapes/VHSTape.gd" type="Script" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+Weapon = ExtResource( 3 )
+tape_name = "Robocop"
+run_time = 3.0
+rewind_time = 5.0
+
+[node name="TapePickupRoboCop" instance=ExtResource( 1 )]
+tape_graphic = ExtResource( 2 )
+vhs_tape = SubResource( 1 )
