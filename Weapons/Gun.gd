@@ -10,11 +10,13 @@ onready var sprite = $Sprite
 onready var muzzle = $Muzzle
 onready var cooldown = $Cooldown
 onready var animation_player = $AnimationPlayer
+var dir_to_mouse
 
 func _ready() -> void:
 	deactivate_gun()
 
 func _process(_delta: float) -> void:
+	dir_to_mouse = (get_global_mouse_position() - global_position).normalized()
 	rotate_gun()
 	change_gun_z_axis()
 	flip_sprite()

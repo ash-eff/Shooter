@@ -4,7 +4,6 @@ func shoot():
 	if cooldown.is_stopped():
 		cooldown.start()
 		animation_player.play("Fire")
-		var dir_to_mouse = (get_global_mouse_position() - muzzle.global_position).normalized()
 		var recoil_degree_max = current_recoil * 0.5
 		var recoil_radians_actual = deg2rad(rand_range(-recoil_degree_max, recoil_degree_max))
 		var actual_bullet_direction = dir_to_mouse.rotated(recoil_radians_actual) 

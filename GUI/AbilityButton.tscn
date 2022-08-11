@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://GUI/AbilityButton.gd" type="Script" id=1]
+[ext_resource path="res://Art/ui-squareRobocop.png" type="Texture" id=3]
+[ext_resource path="res://GUI/Outline.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GUI/Selection.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Art/ui-squareRobocopBW.png" type="Texture" id=6]
+[ext_resource path="res://Art/ui-square.png" type="Texture" id=7]
+[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.TTF" type="DynamicFontData" id=8]
+
+[sub_resource type="Environment" id=2]
+background_mode = 4
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_intensity = 1.0
+glow_strength = 0.95
+glow_blend_mode = 0
+glow_bicubic_upscale = true
+
+[sub_resource type="DynamicFont" id=3]
+size = 4
+font_data = ExtResource( 8 )
+
+[node name="AbilityButton" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -621.0
+margin_bottom = -1225.0
+texture = ExtResource( 7 )
+script = ExtResource( 1 )
+texture_color = ExtResource( 3 )
+texture_BW = ExtResource( 6 )
+run = 2.0
+cooldown = 3.0
+
+[node name="Sweep" type="TextureProgress" parent="."]
+modulate = Color( 0.105882, 0.105882, 0.105882, 0.882353 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+fill_mode = 4
+
+[node name="Outline" parent="." instance=ExtResource( 4 )]
+modulate = Color( 1.6, 0.45, 1.15, 1 )
+play_color = Color( 0.4, 1.5, 0.7, 1 )
+rewind_color = Color( 1.6, 0.45, 1.15, 1 )
+
+[node name="Selection" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="KeyLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.0
+margin_right = -2.0
+custom_fonts/font = SubResource( 3 )
+text = "1"
+align = 2

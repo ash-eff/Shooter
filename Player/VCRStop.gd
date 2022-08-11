@@ -3,9 +3,12 @@ extends State
 signal pickup_tape
 
 func enter(_msg := {}) -> void:
-	print("VCR Stopped")
+	pass
 
 func handle_input(_event: InputEvent) -> void:
+	pass
+
+func update(_delta: float) -> void:
 	if owner.touching_tape != null:
 		if Input.is_action_just_pressed("interact"):
 			owner.add_tape_to_collection(owner.touching_tape)
@@ -32,8 +35,6 @@ func handle_input(_event: InputEvent) -> void:
 			if Input.is_action_just_pressed("rmb"):
 				state_machine.transition_to("Play")
 
-func update(_delta: float) -> void:
-	pass
 
 func physics_update(_delta: float) -> void:
 	pass

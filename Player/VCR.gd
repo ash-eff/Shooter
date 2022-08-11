@@ -1,18 +1,23 @@
 extends Node2D
 
+signal tape_aquired(tape)
+signal swap_tapes(index)
+signal play_tape
+
 var tapes_dictionary = {}
 var weapons = []
 var touching_tape = null
 var current_tape
 var current_weapon = null
-var weapon_index = 0
+export var weapon_index = 0
 var selected_weapon_index = -1
 
 func add_tape_to_collection(tape):
 	var weapon = tape.vhs_tape.Weapon.instance()
 	get_parent().add_child(weapon)
 	weapons.append(weapon)
-	tapes_dictionary[weapon] = tape.vhs_tape 
+	tapes_dictionary[weapon] = tape.vhs_tape
+	emit_signal("tape_aquired", tape)
 	if weapons.size() == 1:
 		swap_tape()
 		selected_weapon_index = 0
@@ -24,14 +29,26 @@ func swap_tape():
 	if weapon_index + 1 > weapons.size():
 		return
 	current_tape = tapes_dictionary[weapons[weapon_index]]
-	print(current_tape.tape_name)
-	# adjust ui here and load tape to be played
+	emit_signal("swap_tapes", weapon_index)
+	
+func play_tape():
+	emit_signal("play_tape")
 	
 func swap_weapon():
 	if current_weapon != null:
 		current_weapon.deactivate_gun()
 	current_weapon = weapons[weapon_index]
 	current_weapon.activate_gun()
+	
+func _on_tape_play_complete():
+	weapon_index = 0
+	selected_weapon_index = 0
+	swap_tape()
+	swap_weapon()
+	$StateMachine.transition_to("Rewind")
+	
+func _on_tape_rewind_complete():
+	$StateMachine.transition_to("Stop")
 
 func _on_VCR_area_entered(area: Area2D) -> void:
 	if area.is_in_group("tape"):
