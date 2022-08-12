@@ -40,15 +40,7 @@ func add_ability_icon(tape):
 func _on_VCR_tape_aquired(tape) -> void:
 	add_ability_icon(tape)
 
-func _on_VCR_swap_tapes(index) -> void:
-	if current_icon_index == index:
-		return
-	icons[current_icon_index].deselect_item()
-	selected_icon = icons[index]
-	selected_icon.select_item()
-	current_icon_index = index
-
-func _on_VCR_play_tape() -> void:
+func _on_VCR_play_tape(tape) -> void:
 	if selected_icon == null:
 		return
 	is_playing = true
@@ -70,3 +62,12 @@ func _on_CooldownTimer_timeout() -> void:
 	rewinding_icon.outline.visible = false
 	emit_signal("rewind_complete")
 	set_process(false)	
+
+
+func _on_VCR_swap_tape_index(index) -> void:
+	if current_icon_index == index:
+		return
+	icons[current_icon_index].deselect_item()
+	selected_icon = icons[index]
+	selected_icon.select_item()
+	current_icon_index = index

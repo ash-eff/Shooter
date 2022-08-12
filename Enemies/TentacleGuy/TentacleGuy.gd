@@ -1,4 +1,4 @@
-extends "res://Enemy.gd"
+extends "res://Enemies/Enemy.gd"
 
 export (PackedScene) var Bullet
 export (float) var spread_angle = 90.0

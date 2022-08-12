@@ -1,8 +1,11 @@
 extends Node2D
 
 signal tape_aquired(tape)
-signal swap_tapes(index)
-signal play_tape
+signal swap_tape_index(index)
+signal swap_tape(tape)
+signal play_tape(tape)
+signal play_stopped
+signal rewind_tape(tape)
 
 var tapes_dictionary = {}
 var weapons = []
@@ -29,10 +32,11 @@ func swap_tape():
 	if weapon_index + 1 > weapons.size():
 		return
 	current_tape = tapes_dictionary[weapons[weapon_index]]
-	emit_signal("swap_tapes", weapon_index)
+	emit_signal("swap_tape_index", weapon_index)
+	emit_signal("swap_tape", current_tape.tape_name)
 	
 func play_tape():
-	emit_signal("play_tape")
+	emit_signal("play_tape", current_tape)
 	
 func swap_weapon():
 	if current_weapon != null:
@@ -41,10 +45,12 @@ func swap_weapon():
 	current_weapon.activate_gun()
 	
 func _on_tape_play_complete():
+	emit_signal("rewind_tape", current_tape)
 	weapon_index = 0
 	selected_weapon_index = 0
 	swap_tape()
 	swap_weapon()
+	emit_signal("play_stopped")
 	$StateMachine.transition_to("Rewind")
 	
 func _on_tape_rewind_complete():

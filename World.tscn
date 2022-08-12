@@ -5,7 +5,7 @@
 [ext_resource path="res://Tapes/JudgeDredd/TapePickupDredd.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Art/WastelandWalls-sheet.png" type="Texture" id=4]
 [ext_resource path="res://World.gd" type="Script" id=5]
-[ext_resource path="res://Tapes/Robocop/TapePickupRoboCop.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/TentacleGuy/TentacleGuy.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 48, 48, 0, 48, 0, 8, 48, 8 )
@@ -669,5 +669,5 @@ tile_data = PoolIntArray( -1114142, 3, 65539, -1114141, 3, 262148, -1114140, 3, 
 [node name="TapePickupDredd" parent="." instance=ExtResource( 3 )]
 position = Vector2( 55, 21 )
 
-[node name="TapePickupRoboCop" parent="." instance=ExtResource( 6 )]
-position = Vector2( -50, 21 )
+[node name="TentacleGuy" parent="." instance=ExtResource( 6 )]
+position = Vector2( 178, -81 )

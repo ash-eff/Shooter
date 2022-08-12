@@ -3,4 +3,6 @@
 [ext_resource path="res://GUI/AbilityButton.tscn" type="PackedScene" id=1]
 
 [node name="AbilityButtonRobocop" instance=ExtResource( 1 )]
+run = 10.0
+cooldown = 2.0
 ability_key = 2

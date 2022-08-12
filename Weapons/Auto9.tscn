@@ -5,14 +5,14 @@
 [ext_resource path="res://Weapons/Gun.tscn" type="PackedScene" id=3]
 
 [node name="Auto9" instance=ExtResource( 3 )]
-position = Vector2( 0, 2 )
+position = Vector2( 0, -1 )
 script = ExtResource( 2 )
 max_recoil = 20.0
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 8, 0 )
 texture = ExtResource( 1 )
-hframes = 3
+frame = 3
 
 [node name="Muzzle" parent="." index="1"]
 position = Vector2( 26, -1 )

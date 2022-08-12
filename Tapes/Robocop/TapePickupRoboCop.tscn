@@ -11,8 +11,6 @@ script = ExtResource( 4 )
 Weapon = ExtResource( 3 )
 Icon = ExtResource( 5 )
 tape_name = "Robocop"
-run_time = 2.0
-rewind_time = 3.0
 
 [node name="TapePickupRoboCop" instance=ExtResource( 1 )]
 tape_graphic = ExtResource( 2 )

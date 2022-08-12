@@ -2,10 +2,10 @@ extends State
 
 
 func enter(_msg := {}) -> void:
-	owner.chase_range.set_deferred("disabled", true)
+	owner.chase_range.call_deferred("disabled", true)
 	owner.animation_player.play("Die")
 	owner.muzzle_rotator.visible = false
-	owner.collision_shape.set_deferred("disabled", true)
+	owner.collision_shape.call_deferred("disabled", true)
 
 func handle_input(_event: InputEvent) -> void:
 	pass

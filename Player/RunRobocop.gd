@@ -3,7 +3,7 @@ extends State
 var velocity = Vector2()
 
 func enter(_msg := {}) -> void:
-	owner.animation_player.play("Run")
+	owner.animation_player.play("RunRobocop")
 
 func update(_delta: float) -> void:
 	check_velocity()
@@ -20,4 +20,4 @@ func update(_delta: float) -> void:
 
 func check_velocity():
 	if velocity == Vector2.ZERO:
-		state_machine.transition_to("Idle")
+		state_machine.transition_to("IdleRobocop")
