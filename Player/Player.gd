@@ -10,6 +10,7 @@ var current_tape
 onready var player_sprite = $Sprite
 onready var animation_player = $AnimationPlayer
 onready var bullet = preload("res://Weapons/Bullet.tscn")
+
 	
 func _physics_process(_delta):
 	set_mouse_position()

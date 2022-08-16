@@ -10,27 +10,49 @@ onready var sprite = $Sprite
 onready var muzzle = $Muzzle
 onready var cooldown = $Cooldown
 onready var animation_player = $AnimationPlayer
+var spread_angle = 45.0
+var number_of_shots = 1
 var dir_to_mouse
+var shooting_speed = 2.0
 
 func _ready() -> void:
-	deactivate_gun()
+	cooldown.wait_time = shooting_speed
+	#deactivate_gun()
 
 func _process(_delta: float) -> void:
 	dir_to_mouse = (get_global_mouse_position() - global_position).normalized()
 	rotate_gun()
 	change_gun_z_axis()
 	flip_sprite()
+	shoot()
 	
 func _physics_process(_delta: float) -> void:
-	if not Input.is_action_pressed("Shoot"):
-		var recoil_increment = max_recoil * 0.05
-		current_recoil = clamp(current_recoil - recoil_increment, 0.0, max_recoil)
+	if Input.is_action_just_pressed("up_arrow"):
+		shooting_speed -= .2
+		print("Shooting Speed: ", shooting_speed)
+		cooldown.wait_time = shooting_speed
+		
+	if Input.is_action_just_pressed("down_arrow"):
+		shooting_speed += .2
+		print("Shooting Speed: ", shooting_speed)
+		cooldown.wait_time = shooting_speed
 	
-	if Input.is_action_pressed("Shoot"):
-		shoot()
+	if Input.is_action_just_pressed("right_arrow"):
+		number_of_shots += 1
+		print("Number of Shots: ", number_of_shots)
+		
+	if number_of_shots == 1:
+		 return
+		
+	if Input.is_action_just_pressed("left_arrow"):
+		number_of_shots -= 1
+		print("Number of Shots: ", number_of_shots)
+		
+	
 	
 func shoot():
 	print("shoot")
+
 
 func rotate_gun():
 	mouse_position = get_global_mouse_position()

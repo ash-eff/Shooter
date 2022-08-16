@@ -5,15 +5,16 @@ var direction
 var path := PoolVector2Array() setget set_path
 
 func enter(_msg := {}) -> void:
-	print("Chase")
-	owner.animation_player.play("Walk")
-	#owner.chase_range.set_disabled(false)
+	print("Knockback")
+	$Timer.wait_time = owner.knockback_time
+	$Timer.start()
+	owner.animation_player.play("Knockback")
 
 func handle_input(_event: InputEvent) -> void:
 	pass
 
 func update(delta: float) -> void:
-	point = owner.target.global_position
+	point = owner.knockback_position
 	path = get_tree().root.get_child(0).get_safe_path(owner.global_position, point)
 	if owner.dir.x >= 0:
 		owner.sprite.flip_h = false
@@ -22,8 +23,6 @@ func update(delta: float) -> void:
 	if path.size() > 0:
 		var move_distance = owner.move_speed * delta
 		move_along_path(move_distance)
-	elif path.size() == 0:
-		state_machine.transition_to("Idle")
 
 func physics_update(_delta: float) -> void:
 	pass
@@ -38,11 +37,6 @@ func move_along_path(distance : float) -> void:
 		if distance <= distance_to_next and distance >= 0.0:
 			owner.position = starting_point.linear_interpolate(path[0], distance / distance_to_next)
 			break
-		elif distance < 0.0:
-			owner.position = path[0]
-			print("done")
-			state_machine.transition_to("Idle")
-			break
 		distance -= distance_to_next
 		starting_point = path[0]
 		path.remove(0)
@@ -51,8 +45,5 @@ func set_path(value : PoolVector2Array) -> void:
 	path = value
 
 
-#func _on_Range_body_entered(body: Node) -> void:
-	#if body.name == "Player":
-		#path.empty()
-		#owner.chase_range.set_disabled(true)
-		#state_machine.transition_to("Shoot")
+func _on_Timer_timeout() -> void:
+	state_machine.transition_to("Chase")

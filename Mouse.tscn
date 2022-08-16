@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Mouse.gd" type="Script" id=1]
+
+[node name="Mouse" type="Sprite"]
+script = ExtResource( 1 )

@@ -1,6 +1,7 @@
 extends State
 
 func enter(_msg := {}) -> void:
+	print("Idle")
 	$Timer.start()
 	owner.animation_player.play("Idle")
 	owner.muzzle_rotator.visible = false

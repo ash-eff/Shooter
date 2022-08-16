@@ -1,15 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/PlayerSpriteSheet.png" type="Texture" id=2]
-[ext_resource path="res://Player/PlayerGUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Mouse.tscn" type="PackedScene" id=3]
 [ext_resource path="res://BoilerPlate/StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Player/States/Idle.gd" type="Script" id=5]
 [ext_resource path="res://Player/States/Run.gd" type="Script" id=6]
-[ext_resource path="res://Player/VCR.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Player/Transform.gd" type="Script" id=8]
-[ext_resource path="res://Player/IdleRobocop.gd" type="Script" id=9]
-[ext_resource path="res://Player/RunRobocop.gd" type="Script" id=10]
+[ext_resource path="res://Weapons/LawGiver.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Spell_Rotator.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
@@ -157,25 +155,12 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("StateMachine/Transform")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "next_animation"
-} ]
-}
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 8 )
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
+collision_layer = 2
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -207,27 +192,11 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
 
-[node name="IdleRobocop" type="Node" parent="StateMachine"]
-script = ExtResource( 9 )
-
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
 
-[node name="RunRobocop" type="Node" parent="StateMachine"]
-script = ExtResource( 10 )
+[node name="Mouse" parent="." instance=ExtResource( 3 )]
 
-[node name="Transform" type="Node" parent="StateMachine"]
-script = ExtResource( 8 )
+[node name="LawGiver" parent="." instance=ExtResource( 7 )]
 
-[node name="VCR" parent="." instance=ExtResource( 7 )]
-visible = false
-
-[node name="PlayerGUI" parent="." instance=ExtResource( 3 )]
-
-[connection signal="play_stopped" from="VCR" to="." method="_on_VCR_play_stopped"]
-[connection signal="play_tape" from="VCR" to="." method="_on_VCR_play_tape"]
-[connection signal="play_tape" from="VCR" to="PlayerGUI" method="_on_VCR_play_tape"]
-[connection signal="rewind_tape" from="VCR" to="." method="_on_VCR_rewind_tape"]
-[connection signal="swap_tape" from="VCR" to="." method="_on_VCR_swap_tape"]
-[connection signal="swap_tape_index" from="VCR" to="PlayerGUI" method="_on_VCR_swap_tape_index"]
-[connection signal="tape_aquired" from="VCR" to="PlayerGUI" method="_on_VCR_tape_aquired"]
+[node name="Spell_Rotator" parent="." instance=ExtResource( 8 )]
