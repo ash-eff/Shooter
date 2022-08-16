@@ -13,18 +13,18 @@ onready var animation_player = $AnimationPlayer
 var spread_angle = 45.0
 var number_of_shots = 1
 var dir_to_mouse
-var shooting_speed = 2.0
+export var shooting_speed = 2.0
 
 func _ready() -> void:
 	cooldown.wait_time = shooting_speed
-	#deactivate_gun()
 
 func _process(_delta: float) -> void:
 	dir_to_mouse = (get_global_mouse_position() - global_position).normalized()
 	rotate_gun()
 	change_gun_z_axis()
 	flip_sprite()
-	shoot()
+	if Input.is_action_pressed("Shoot"):
+		shoot()
 	
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("up_arrow"):
@@ -74,11 +74,3 @@ func flip_sprite():
 
 func reset_weapon():
 	animation_player.play("Idle")
-	
-func activate_gun():
-	self.visible = true
-	set_physics_process(true)
-	
-func deactivate_gun():
-	self.visible = false
-	set_physics_process(false)

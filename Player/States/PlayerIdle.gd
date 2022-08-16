@@ -6,4 +6,8 @@ func enter(_msg := {}) -> void:
 
 func update(_delta: float) -> void:
 	if Input.is_action_pressed("right") or Input.is_action_pressed("left")  or Input.is_action_pressed("down") or Input.is_action_pressed("up"):
-		state_machine.transition_to("Run")
+		state_machine.transition_to("Move")
+	if Input.is_action_just_pressed("Shoot"):
+		owner.set_speed(owner.walk_speed)
+	if Input.is_action_just_released("Shoot"):
+		owner.set_speed(owner.run_speed)

@@ -6,7 +6,7 @@ var path := PoolVector2Array() setget set_path
 
 func enter(_msg := {}) -> void:
 	print("Chase")
-	owner.animation_player.play("Walk")
+	owner.animation_player.play("Chase")
 	#owner.chase_range.set_disabled(false)
 
 func handle_input(_event: InputEvent) -> void:

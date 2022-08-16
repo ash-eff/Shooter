@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GameNodes/UnitSprite.gd" type="Script" id=1]
+[ext_resource path="res://Art/Dummy.png" type="Texture" id=2]
+
+[node name="UnitSprite" type="Sprite"]
+position = Vector2( 0, -16 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+normal_color = Color( 1, 1, 1, 1 )
+flash_color = Color( 100, 100, 100, 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

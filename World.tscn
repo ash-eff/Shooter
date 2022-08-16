@@ -1,10 +1,11 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=91 format=2]
 
 [ext_resource path="res://Art/floor.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enemies/TentacleGuy/TentacleGuyWalker.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Art/WastelandWalls-sheet.png" type="Texture" id=4]
 [ext_resource path="res://World.gd" type="Script" id=5]
+[ext_resource path="res://GameNodes/TestDummy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GameNodes/XP.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 48, 48, 0, 48, 0, 8, 48, 8 )
@@ -665,5 +666,197 @@ tile_data = PoolIntArray( -1114142, 3, 65539, -1114141, 3, 262148, -1114140, 3, 
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
-[node name="TentacleGuyWalker" parent="." instance=ExtResource( 3 )]
-position = Vector2( 41, -98 )
+[node name="TestDummy" parent="." instance=ExtResource( 6 )]
+position = Vector2( 53, -40 )
+
+[node name="XP" parent="." instance=ExtResource( 7 )]
+position = Vector2( -141, -45 )
+value = 5
+
+[node name="XP2" parent="." instance=ExtResource( 7 )]
+position = Vector2( -145, 51 )
+value = 5
+
+[node name="XP3" parent="." instance=ExtResource( 7 )]
+position = Vector2( -212, 4 )
+value = 5
+
+[node name="XP4" parent="." instance=ExtResource( 7 )]
+position = Vector2( -208, -71 )
+value = 5
+
+[node name="XP5" parent="." instance=ExtResource( 7 )]
+position = Vector2( -107, -54 )
+value = 5
+
+[node name="XP6" parent="." instance=ExtResource( 7 )]
+position = Vector2( -111, 42 )
+value = 5
+
+[node name="XP7" parent="." instance=ExtResource( 7 )]
+position = Vector2( -178, -5 )
+value = 5
+
+[node name="XP8" parent="." instance=ExtResource( 7 )]
+position = Vector2( -174, -80 )
+value = 5
+
+[node name="XP9" parent="." instance=ExtResource( 7 )]
+position = Vector2( -143, -13 )
+value = 5
+
+[node name="XP10" parent="." instance=ExtResource( 7 )]
+position = Vector2( -147, 83 )
+value = 5
+
+[node name="XP11" parent="." instance=ExtResource( 7 )]
+position = Vector2( -214, 36 )
+value = 5
+
+[node name="XP12" parent="." instance=ExtResource( 7 )]
+position = Vector2( -210, -39 )
+value = 5
+
+[node name="XP13" parent="." instance=ExtResource( 7 )]
+position = Vector2( -109, -22 )
+value = 5
+
+[node name="XP14" parent="." instance=ExtResource( 7 )]
+position = Vector2( -113, 74 )
+value = 5
+
+[node name="XP15" parent="." instance=ExtResource( 7 )]
+position = Vector2( -180, 27 )
+value = 5
+
+[node name="XP16" parent="." instance=ExtResource( 7 )]
+position = Vector2( -176, -48 )
+value = 5
+
+[node name="XP17" parent="." instance=ExtResource( 7 )]
+position = Vector2( -93, -64 )
+value = 5
+
+[node name="XP18" parent="." instance=ExtResource( 7 )]
+position = Vector2( -97, 32 )
+value = 5
+
+[node name="XP19" parent="." instance=ExtResource( 7 )]
+position = Vector2( -164, -15 )
+value = 5
+
+[node name="XP20" parent="." instance=ExtResource( 7 )]
+position = Vector2( -160, -90 )
+value = 5
+
+[node name="XP21" parent="." instance=ExtResource( 7 )]
+position = Vector2( -59, -73 )
+value = 5
+
+[node name="XP22" parent="." instance=ExtResource( 7 )]
+position = Vector2( -63, 23 )
+value = 5
+
+[node name="XP23" parent="." instance=ExtResource( 7 )]
+position = Vector2( -130, -24 )
+value = 5
+
+[node name="XP24" parent="." instance=ExtResource( 7 )]
+position = Vector2( -126, -99 )
+value = 5
+
+[node name="XP25" parent="." instance=ExtResource( 7 )]
+position = Vector2( -95, -32 )
+value = 5
+
+[node name="XP26" parent="." instance=ExtResource( 7 )]
+position = Vector2( -99, 64 )
+value = 5
+
+[node name="XP27" parent="." instance=ExtResource( 7 )]
+position = Vector2( -166, 17 )
+value = 5
+
+[node name="XP28" parent="." instance=ExtResource( 7 )]
+position = Vector2( -162, -58 )
+value = 5
+
+[node name="XP29" parent="." instance=ExtResource( 7 )]
+position = Vector2( -61, -41 )
+value = 5
+
+[node name="XP30" parent="." instance=ExtResource( 7 )]
+position = Vector2( -65, 55 )
+value = 5
+
+[node name="XP31" parent="." instance=ExtResource( 7 )]
+position = Vector2( -132, 8 )
+value = 5
+
+[node name="XP32" parent="." instance=ExtResource( 7 )]
+position = Vector2( -128, -67 )
+value = 5
+
+[node name="XP33" parent="." instance=ExtResource( 7 )]
+position = Vector2( -132, -1 )
+value = 5
+
+[node name="XP34" parent="." instance=ExtResource( 7 )]
+position = Vector2( -136, 95 )
+value = 5
+
+[node name="XP35" parent="." instance=ExtResource( 7 )]
+position = Vector2( -203, 48 )
+value = 5
+
+[node name="XP36" parent="." instance=ExtResource( 7 )]
+position = Vector2( -199, -27 )
+value = 5
+
+[node name="XP37" parent="." instance=ExtResource( 7 )]
+position = Vector2( -98, -10 )
+value = 5
+
+[node name="XP38" parent="." instance=ExtResource( 7 )]
+position = Vector2( -102, 86 )
+value = 5
+
+[node name="XP39" parent="." instance=ExtResource( 7 )]
+position = Vector2( -169, 39 )
+value = 5
+
+[node name="XP40" parent="." instance=ExtResource( 7 )]
+position = Vector2( -165, -36 )
+value = 5
+
+[node name="XP41" parent="." instance=ExtResource( 7 )]
+position = Vector2( -134, 31 )
+value = 5
+
+[node name="XP42" parent="." instance=ExtResource( 7 )]
+position = Vector2( -138, 127 )
+value = 5
+
+[node name="XP43" parent="." instance=ExtResource( 7 )]
+position = Vector2( -205, 80 )
+value = 5
+
+[node name="XP44" parent="." instance=ExtResource( 7 )]
+position = Vector2( -201, 5 )
+value = 5
+
+[node name="XP45" parent="." instance=ExtResource( 7 )]
+position = Vector2( -100, 22 )
+value = 5
+
+[node name="XP46" parent="." instance=ExtResource( 7 )]
+position = Vector2( -104, 118 )
+value = 5
+
+[node name="XP47" parent="." instance=ExtResource( 7 )]
+position = Vector2( -171, 71 )
+value = 5
+
+[node name="XP48" parent="." instance=ExtResource( 7 )]
+position = Vector2( -167, -4 )
+value = 5

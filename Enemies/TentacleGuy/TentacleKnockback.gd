@@ -44,6 +44,5 @@ func move_along_path(distance : float) -> void:
 func set_path(value : PoolVector2Array) -> void:
 	path = value
 
-
 func _on_Timer_timeout() -> void:
 	state_machine.transition_to("Chase")

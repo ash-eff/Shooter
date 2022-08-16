@@ -2,7 +2,10 @@ extends KinematicBody2D
  
 class_name Player
 
-export (int) var speed = 125
+export (float) var base_speed = 125.0
+var run_speed
+var walk_speed
+var current_speed
 
 var velocity = Vector2()
 var mouse_position = Vector2()
@@ -11,6 +14,10 @@ onready var player_sprite = $Sprite
 onready var animation_player = $AnimationPlayer
 onready var bullet = preload("res://Weapons/Bullet.tscn")
 
+func _ready() -> void:
+	run_speed = base_speed
+	walk_speed = base_speed / 4.0
+	set_speed(run_speed)
 	
 func _physics_process(_delta):
 	set_mouse_position()
@@ -27,7 +34,10 @@ func get_input():
 		velocity.y += 1
 	if Input.is_action_pressed("up"):
 		velocity.y -= 1
-	velocity = velocity.normalized() * speed
+	velocity = velocity.normalized() * current_speed
+	
+func set_speed(speed):
+	current_speed = speed
 
 func end_transformation():
 	$StateMachine.transition_to("Idle")
@@ -53,3 +63,7 @@ func _on_VCR_swap_tape(tape) -> void:
 
 func _on_VCR_play_stopped() -> void:
 	$StateMachine.transition_to("Transform")
+
+
+func _on_XPManager_set_required_experience(value) -> void:
+	pass # Replace with function body.

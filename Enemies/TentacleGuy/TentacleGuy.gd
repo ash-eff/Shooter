@@ -9,11 +9,8 @@ func reset_to_idle():
 func die():
 	$StateMachine.transition_to("Dead")
 
-func _on_Hurtbox_area_entered(area: Area2D) -> void:
-	#flash sprite
-	var dir = (global_position - area.global_position).normalized()
-	knockback_position = global_position + (dir * 15)
-	knockback_time = area.knockback_time
-	var crit = area.get_if_crit()
-	var damage = area.get_damage()
-	take_damage(damage, crit)
+func _on_Hurtbox_take_damage(damage, is_crit) -> void:
+	take_damage(damage, is_crit)
+
+func _on_Hurtbox_knockback(from_dir, duration) -> void:
+	knock_back(from_dir, duration)

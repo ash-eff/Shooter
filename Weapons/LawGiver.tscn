@@ -6,9 +6,10 @@
 [node name="LawGiver" instance=ExtResource( 2 )]
 position = Vector2( 0, 2 )
 script = ExtResource( 1 )
+shooting_speed = 0.6
 
 [node name="Muzzle" parent="." index="1"]
 position = Vector2( 22, 0 )
 
 [node name="Cooldown" parent="." index="2"]
-wait_time = 5.0
+wait_time = 0.1
