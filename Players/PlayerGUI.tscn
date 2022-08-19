@@ -1,4 +1,7 @@
-extends CanvasLayer
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends CanvasLayer
 
 signal play_complete
 signal rewind_complete
@@ -15,8 +18,8 @@ var is_rewinding = false
 
 func _ready() -> void:
 	set_process(false)
-	connect("play_complete", get_parent().get_node("VCR"), "_on_tape_play_complete")
-	connect("rewind_complete", get_parent().get_node("VCR"), "_on_tape_rewind_complete")
+	connect(\"play_complete\", get_parent().get_node(\"VCR\"), \"_on_tape_play_complete\")
+	connect(\"rewind_complete\", get_parent().get_node(\"VCR\"), \"_on_tape_rewind_complete\")
 
 func _process(delta):
 	if selected_icon == null:
@@ -54,13 +57,13 @@ func _on_RunTimer_timeout() -> void:
 	rewinding_icon = selected_icon
 	rewinding_icon.outline.rewind()
 	cooldown_timer.start()
-	emit_signal("play_complete")
+	emit_signal(\"play_complete\")
 
 func _on_CooldownTimer_timeout() -> void:
 	rewinding_icon.key_label.show()
 	rewinding_icon.sweep.value = 0
 	rewinding_icon.outline.visible = false
-	emit_signal("rewind_complete")
+	emit_signal(\"rewind_complete\")
 	set_process(false)	
 
 
@@ -71,3 +74,30 @@ func _on_VCR_swap_tape_index(index) -> void:
 	selected_icon = icons[index]
 	selected_icon.select_item()
 	current_icon_index = index
+"
+
+[node name="PlayerGUI" type="CanvasLayer"]
+script = SubResource( 1 )
+
+[node name="PlayerGUIControl" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AbilityBar" type="HBoxContainer" parent="PlayerGUIControl"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_top = -48.0
+margin_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RunTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="RunTimer" to="." method="_on_RunTimer_timeout"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]

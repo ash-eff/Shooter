@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://BoilerPlate/StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/TentacleGuy/TentacleDead.gd" type="Script" id=2]
 [ext_resource path="res://Enemies/TentacleGuy/TentacleGuy.gd" type="Script" id=3]
 [ext_resource path="res://Art/TentacleGuy.png" type="Texture" id=4]
-[ext_resource path="res://GameNodes/Hurtbox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/TentacleGuy/TentacleChase.gd" type="Script" id=6]
 [ext_resource path="res://GameNodes/FCTManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemies/TentacleGuy/TentacleKnockback.gd" type="Script" id=8]
@@ -91,9 +90,6 @@ tracks/0/keys = {
 "values": [ 7, 6, 5, 4 ]
 }
 
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 6.5, 8.5 )
-
 [node name="TentacleGuyWalker" type="KinematicBody2D" groups=["enemy"]]
 collision_layer = 8
 collision_mask = 2
@@ -134,17 +130,4 @@ one_shot = true
 [node name="FCTManager" parent="." instance=ExtResource( 7 )]
 position = Vector2( 0, -16 )
 
-[node name="Hurtbox" parent="." instance=ExtResource( 5 )]
-collision_layer = 16
-collision_mask = 32
-
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2( 0.5, -1.5 )
-shape = SubResource( 12 )
-
 [connection signal="timeout" from="StateMachine/Knockback/Timer" to="StateMachine/Knockback" method="_on_Timer_timeout"]
-[connection signal="flash_sprite" from="Hurtbox" to="UnitSprite" method="_on_flash_sprite"]
-[connection signal="knockback" from="Hurtbox" to="." method="_on_Hurtbox_knockback"]
-[connection signal="take_damage" from="Hurtbox" to="." method="_on_Hurtbox_take_damage"]
-
-[editable path="Hurtbox"]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Players/PlayerStats/PlayerStats.gd" type="Script" id=1]
+[ext_resource path="res://Art/PlayerSpriteSheet.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+player_name = "Eloa"
+player_sheet = ExtResource( 2 )
+max_health = 3
+speed = 125.0
+crit_chance = 0.5
+spell_damage_percent = 0.1
+bullet_damage_percent = 0.25

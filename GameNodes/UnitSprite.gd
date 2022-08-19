@@ -7,6 +7,6 @@ onready var flash_timer = $Timer
 func _on_Timer_timeout() -> void:
 	modulate = normal_color
 
-func _on_flash_sprite() -> void:
+func flash_sprite() -> void:
 	modulate = flash_color
 	flash_timer.start()

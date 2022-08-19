@@ -6,7 +6,7 @@
 [ext_resource path="res://GUI/Selection.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Art/ui-squareRobocopBW.png" type="Texture" id=6]
 [ext_resource path="res://Art/ui-square.png" type="Texture" id=7]
-[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.TTF" type="DynamicFontData" id=8]
+[ext_resource path="res://Themes/Fonts/VCR_OSD_MONO_1.001.TTF" type="DynamicFontData" id=8]
 
 [sub_resource type="Environment" id=2]
 background_mode = 4

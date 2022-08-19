@@ -12,17 +12,27 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Player/Player.gd"
+"path": "res://Players/Player.gd"
+}, {
+"base": "Area2D",
+"class": "PlayerHitbox",
+"language": "GDScript",
+"path": "res://GameNodes/Hitboxes/PlayerHitbox.gd"
+}, {
+"base": "Resource",
+"class": "PlayerStats",
+"language": "GDScript",
+"path": "res://Players/PlayerStats/PlayerStats.gd"
 }, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://BoilerPlate/State.gd"
+"path": "res://StateMachine/State.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://BoilerPlate/StateMachine.gd"
+"path": "res://StateMachine/StateMachine.gd"
 }, {
 "base": "Resource",
 "class": "VHSTape",
@@ -31,6 +41,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Player": "",
+"PlayerHitbox": "",
+"PlayerStats": "",
 "State": "",
 "StateMachine": "",
 "VHSTape": ""
@@ -40,6 +52,10 @@ _global_script_class_icons={
 
 config/name="Shooter"
 run/main_scene="res://World.tscn"
+
+[autoload]
+
+GameManager="*res://GameNodes/GameManager.tscn"
 
 [debug]
 
@@ -160,10 +176,8 @@ left_arrow={
 
 2d_physics/layer_1="world"
 2d_physics/layer_2="player"
-2d_physics/layer_3="playerhurtbox"
+2d_physics/layer_3="playerHitbox/enemyHurtbox"
 2d_physics/layer_4="enemy"
-2d_physics/layer_5="enemyhurtbox"
-2d_physics/layer_6="projectiles"
 
 [physics]
 

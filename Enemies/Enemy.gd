@@ -14,10 +14,10 @@ onready var hurtbox = $Hurtbox
 
 
 var dir = Vector2.ZERO
-var target: Player = null
+var target = null
 
 func _ready() -> void:
-	target = get_parent().get_node("Player")
+	target = get_tree().get_nodes_in_group("player")[0]
 
 func take_damage(damage, is_crit):
 	if $StateMachine.get_current_state_name() == "Dead":

@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=3 format=2]
 
-[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Themes/Fonts/VCR_OSD_MONO_1.001.TTF" type="DynamicFontData" id=1]
 
 [sub_resource type="DynamicFont" id=1]
 size = 4
