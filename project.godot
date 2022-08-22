@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Damage",
+"language": "GDScript",
+"path": "res://Weapons/Damage.gd"
+}, {
+"base": "Area2D",
+"class": "EnemyHurtbox",
+"language": "GDScript",
+"path": "res://GameNodes/Hurtboxes/EnemyHurtbox.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -40,6 +50,8 @@ _global_script_classes=[ {
 "path": "res://Tapes/VHSTape.gd"
 } ]
 _global_script_class_icons={
+"Damage": "",
+"EnemyHurtbox": "",
 "Player": "",
 "PlayerHitbox": "",
 "PlayerStats": "",

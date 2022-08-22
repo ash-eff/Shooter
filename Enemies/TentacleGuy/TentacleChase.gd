@@ -14,7 +14,7 @@ func handle_input(_event: InputEvent) -> void:
 
 func update(delta: float) -> void:
 	point = owner.target.global_position
-	path = get_tree().root.get_child(0).get_safe_path(owner.global_position, point)
+	path = get_tree().root.get_child(1).get_safe_path(owner.global_position, point)
 	if owner.dir.x >= 0:
 		owner.sprite.flip_h = false
 	else:

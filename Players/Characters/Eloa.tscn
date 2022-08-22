@@ -6,5 +6,9 @@
 [node name="Eloa" instance=ExtResource( 1 )]
 player_stats = ExtResource( 2 )
 
+[connection signal="gain_xp" from="XPManager" to="CanvasLayer/PlayerUI/Bar" method="_on_XPManager_gain_xp"]
+[connection signal="level_up" from="XPManager" to="CanvasLayer/PlayerUI/Bar" method="_on_XPManager_level_up"]
+[connection signal="set_required_experience" from="XPManager" to="CanvasLayer/PlayerUI/Bar" method="_on_XPManager_set_required_experience"]
+
 [editable path="CanvasLayer/PlayerUI"]
 [editable path="CanvasLayer/PlayerUI/Bar"]

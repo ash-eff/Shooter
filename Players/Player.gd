@@ -3,13 +3,6 @@ class_name Player
 
 export var player_stats : Resource
 
-var player_name : String
-var player_health : int
-var player_speed : float
-var player_crit_chance : float
-var player_spell_damage_percent : float
-var player_bullet_damage_percent : float
-
 var run_speed
 var walk_speed
 var current_speed
@@ -21,16 +14,10 @@ onready var animation_player = $AnimationPlayer
 #onready var bullet = preload("res://Weapons/Bullet.tscn")
 
 func _ready() -> void:
-	player_sprite.texture = player_stats.player_sheet
-	player_name = player_stats.player_name
-	player_health = player_stats.max_health
-	player_speed = player_stats.speed
-	player_crit_chance = player_stats.crit_chance
-	player_spell_damage_percent = player_stats.spell_damage_percent
-	player_bullet_damage_percent = player_stats.bullet_damage_percent
-	print(player_name + " loaded")
-	run_speed = player_speed
-	walk_speed = player_speed / 4.0
+	player_sprite.texture = player_stats.sprite_sheet
+	print(player_stats.player_name + " loaded")
+	run_speed = player_stats.speed
+	walk_speed = player_stats.speed / 4.0
 	set_speed(run_speed)
 	
 func _physics_process(_delta):

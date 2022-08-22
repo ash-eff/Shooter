@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource( 1 )
 player_name = "Eloa"
-player_sheet = ExtResource( 2 )
+sprite_sheet = ExtResource( 2 )
 max_health = 3
 speed = 125.0
 crit_chance = 0.5

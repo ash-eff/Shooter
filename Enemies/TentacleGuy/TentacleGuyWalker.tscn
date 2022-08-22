@@ -1,14 +1,16 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/TentacleGuy/TentacleDead.gd" type="Script" id=2]
 [ext_resource path="res://Enemies/TentacleGuy/TentacleGuy.gd" type="Script" id=3]
 [ext_resource path="res://Art/TentacleGuy.png" type="Texture" id=4]
+[ext_resource path="res://GameNodes/Hurtboxes/EnemyHurtbox.gd" type="Script" id=5]
 [ext_resource path="res://Enemies/TentacleGuy/TentacleChase.gd" type="Script" id=6]
 [ext_resource path="res://GameNodes/FCTManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemies/TentacleGuy/TentacleKnockback.gd" type="Script" id=8]
 [ext_resource path="res://GameNodes/UnitSprite.tscn" type="PackedScene" id=9]
 [ext_resource path="res://GameNodes/XP.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Weapons/DOTFire.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CapsuleShape2D" id=11]
 radius = 6.0
@@ -90,12 +92,18 @@ tracks/0/keys = {
 "values": [ 7, 6, 5, 4 ]
 }
 
+[sub_resource type="CapsuleShape2D" id=14]
+radius = 7.0
+height = 6.0
+
 [node name="TentacleGuyWalker" type="KinematicBody2D" groups=["enemy"]]
 collision_layer = 8
-collision_mask = 2
+collision_mask = 10
 script = ExtResource( 3 )
+dot_scene = ExtResource( 11 )
 xp = ExtResource( 10 )
-health = 10
+health = 25
+move_speed = 45.0
 
 [node name="UnitSprite" parent="." instance=ExtResource( 9 )]
 texture = ExtResource( 4 )
@@ -130,4 +138,14 @@ one_shot = true
 [node name="FCTManager" parent="." instance=ExtResource( 7 )]
 position = Vector2( 0, -16 )
 
+[node name="EnemyHurtbox" type="Area2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
+position = Vector2( 0, -2 )
+shape = SubResource( 14 )
+
 [connection signal="timeout" from="StateMachine/Knockback/Timer" to="StateMachine/Knockback" method="_on_Timer_timeout"]
+[connection signal="damage_over_time" from="EnemyHurtbox" to="." method="_on_EnemyHurtbox_damage_over_time"]
+[connection signal="damage_taken" from="EnemyHurtbox" to="." method="_on_EnemyHurtbox_damage_taken"]
+[connection signal="hurtbox_hit" from="EnemyHurtbox" to="." method="_on_EnemyHurtbox_hurtbox_hit"]
