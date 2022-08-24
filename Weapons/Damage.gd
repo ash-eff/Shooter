@@ -11,7 +11,10 @@ var is_crit = false
 
 func _init() -> void:
 	collision_layer = 4
-	collision_mask = 0
+	collision_mask = 1
+	
+func _ready() -> void:
+	connect("body_entered", self, "_on_body_entered")
 
 func get_if_crit():
 	return is_crit
@@ -36,6 +39,8 @@ func get_dot_ticks():
 	return dot_ticks
 	
 func check_dot():
+	if dot_ticks == 0:
+		return
 	is_dot = false
 	var randomNumber = rand_range(0,1)
 	if randomNumber <= 0.1:
@@ -53,4 +58,7 @@ func check_health():
 		return
 	health -= 1
 	if health <= 0:
-		get_parent().queue_free()
+		owner.queue_free()
+
+func _on_body_entered(_body: Node) -> void:
+	check_health()

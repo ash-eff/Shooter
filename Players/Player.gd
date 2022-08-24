@@ -52,11 +52,11 @@ func flip_sprite():
 	else:
 		player_sprite.flip_h = true
 
-func _on_VCR_play_tape(tape) -> void:
+func _on_VCR_play_tape(_tape) -> void:
 	print("Playing: ", current_tape)
 	$StateMachine.transition_to("Transform")
 
-func _on_VCR_rewind_tape(tape) -> void:
+func _on_VCR_rewind_tape(_tape) -> void:
 	print("Rewinding: ", current_tape)
 	
 func _on_VCR_swap_tape(tape) -> void:
@@ -66,5 +66,5 @@ func _on_VCR_play_stopped() -> void:
 	$StateMachine.transition_to("Transform")
 
 
-func _on_XPManager_set_required_experience(value) -> void:
+func _on_XPManager_set_required_experience(_value) -> void:
 	pass # Replace with function body.

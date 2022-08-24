@@ -19,8 +19,8 @@ func collect_xp(value):
 	if experience >= experience_required:
 		level_up()
 
-func get_required_experience(level):
-	var req = round(pow(level, 1.8) + level * 4 + 10)
+func get_required_experience(lev):
+	var req = round(pow(lev, 1.8) + lev * 4 + 10)
 	print("XP Required: ", req)
 	emit_signal("set_required_experience", req)
 	return req

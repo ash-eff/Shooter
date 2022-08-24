@@ -38,6 +38,7 @@ tracks/1/keys = {
 radius = 4.0
 
 [node name="XP" type="Area2D"]
+collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource( 2 )
@@ -55,6 +56,7 @@ autoplay = "Spawn"
 anims/Spawn = SubResource( 2 )
 
 [node name="Pickup" type="Area2D" parent="."]
+collision_layer = 0
 collision_mask = 2
 monitorable = false
 

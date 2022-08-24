@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TentacleGuy.png-c73d08241c137d3ddb93298e85b8f846.stex"
+path="res://.import/TentacleGuy.png-90f5619206a95136724d758acd2adbf9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/TentacleGuy.png"
-dest_files=[ "res://.import/TentacleGuy.png-c73d08241c137d3ddb93298e85b8f846.stex" ]
+source_file="res://Enemies/TentacleGuy/TentacleGuy.png"
+dest_files=[ "res://.import/TentacleGuy.png-90f5619206a95136724d758acd2adbf9.stex" ]
 
 [params]
 

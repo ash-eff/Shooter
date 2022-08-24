@@ -1,7 +1,7 @@
 class_name EnemyHurtbox
 extends Area2D
 
-signal hurtbox_hit()
+signal hit
 signal damage_taken(amount, is_crit, damage_type)
 signal damage_over_time(amount, dot_ticks)
 
@@ -22,3 +22,4 @@ func _on_area_entered(area: Area2D) -> void:
 		else:
 			emit_signal("damage_taken", damage, crit, area.get_damage_type())
 		area.check_health()
+		emit_signal("hit")

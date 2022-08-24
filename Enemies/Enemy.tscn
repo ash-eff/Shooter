@@ -1,13 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://StateMachine/StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Enemies/TentacleGuy/TentacleDead.gd" type="Script" id=2]
-[ext_resource path="res://Enemies/TentacleGuy/TentacleGuy.gd" type="Script" id=3]
-[ext_resource path="res://Art/TentacleGuy.png" type="Texture" id=4]
+[ext_resource path="res://Enemies/EnemyStates/Base/Dead.gd" type="Script" id=2]
+[ext_resource path="res://Enemies/Enemy.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/TentacleGuy/TentacleGuy.png" type="Texture" id=4]
 [ext_resource path="res://GameNodes/Hurtboxes/EnemyHurtbox.gd" type="Script" id=5]
-[ext_resource path="res://Enemies/TentacleGuy/TentacleChase.gd" type="Script" id=6]
+[ext_resource path="res://Enemies/EnemyStates/Base/Chase.gd" type="Script" id=6]
 [ext_resource path="res://GameNodes/FCTManager.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Enemies/TentacleGuy/TentacleKnockback.gd" type="Script" id=8]
+[ext_resource path="res://Enemies/EnemyStates/Base/Knockback.gd" type="Script" id=8]
 [ext_resource path="res://GameNodes/UnitSprite.tscn" type="PackedScene" id=9]
 [ext_resource path="res://GameNodes/XP.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Weapons/DOTFire.tscn" type="PackedScene" id=11]
@@ -31,6 +31,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 4, 5, 6, 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemyHurtbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -74,6 +98,30 @@ tracks/2/keys = {
 "method": "queue_free"
 } ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("EnemyHurtbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=13]
 resource_name = "Knockback"
@@ -92,23 +140,48 @@ tracks/0/keys = {
 "values": [ 7, 6, 5, 4 ]
 }
 
+[sub_resource type="Animation" id=15]
+resource_name = "Spawn"
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemyHurtbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [sub_resource type="CapsuleShape2D" id=14]
 radius = 7.0
 height = 6.0
 
-[node name="TentacleGuyWalker" type="KinematicBody2D" groups=["enemy"]]
+[node name="Enemy" type="KinematicBody2D" groups=["enemy"]]
 collision_layer = 8
 collision_mask = 10
 script = ExtResource( 3 )
 dot_scene = ExtResource( 11 )
 xp = ExtResource( 10 )
-health = 25
-move_speed = 45.0
 
 [node name="UnitSprite" parent="." instance=ExtResource( 9 )]
 texture = ExtResource( 4 )
 hframes = 56
-frame = 14
+frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 11 )
@@ -117,23 +190,7 @@ shape = SubResource( 11 )
 anims/Chase = SubResource( 8 )
 anims/Die = SubResource( 3 )
 anims/Knockback = SubResource( 13 )
-
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource( 1 )
-initial_state = NodePath("Chase")
-
-[node name="Dead" type="Node" parent="StateMachine"]
-script = ExtResource( 2 )
-
-[node name="Chase" type="Node" parent="StateMachine"]
-script = ExtResource( 6 )
-
-[node name="Knockback" type="Node" parent="StateMachine"]
-script = ExtResource( 8 )
-
-[node name="Timer" type="Timer" parent="StateMachine/Knockback"]
-wait_time = 0.1
-one_shot = true
+anims/Spawn = SubResource( 15 )
 
 [node name="FCTManager" parent="." instance=ExtResource( 7 )]
 position = Vector2( 0, -16 )
@@ -145,7 +202,27 @@ script = ExtResource( 5 )
 position = Vector2( 0, -2 )
 shape = SubResource( 14 )
 
-[connection signal="timeout" from="StateMachine/Knockback/Timer" to="StateMachine/Knockback" method="_on_Timer_timeout"]
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+initial_state = NodePath("Chase")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="StateMachine/Chase"]
+autostart = true
+
+[node name="Knockback" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+
+[node name="Timer" type="Timer" parent="StateMachine/Knockback"]
+one_shot = true
+
 [connection signal="damage_over_time" from="EnemyHurtbox" to="." method="_on_EnemyHurtbox_damage_over_time"]
 [connection signal="damage_taken" from="EnemyHurtbox" to="." method="_on_EnemyHurtbox_damage_taken"]
-[connection signal="hurtbox_hit" from="EnemyHurtbox" to="." method="_on_EnemyHurtbox_hurtbox_hit"]
+[connection signal="hit" from="EnemyHurtbox" to="." method="_on_EnemyHurtbox_hit"]
+[connection signal="timeout" from="StateMachine/Chase/Timer" to="StateMachine/Chase" method="_on_Timer_timeout"]
+[connection signal="timeout" from="StateMachine/Knockback/Timer" to="StateMachine/Knockback" method="_on_Timer_timeout"]
