@@ -671,8 +671,68 @@ tile_data = PoolIntArray( -1114142, 3, 65539, -1114141, 3, 262148, -1114140, 3, 
 collision_mask = 1
 
 [node name="TentacleGuy" parent="." instance=ExtResource( 6 )]
-position = Vector2( -96, -56 )
+position = Vector2( -135, -76 )
+move_speed = 45.0
+
+[node name="TentacleGuy2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -162, -57 )
+move_speed = 45.0
+
+[node name="TentacleGuy3" parent="." instance=ExtResource( 6 )]
+position = Vector2( -131, -115 )
+move_speed = 45.0
+
+[node name="TentacleGuy4" parent="." instance=ExtResource( 6 )]
+position = Vector2( -158, -96 )
+move_speed = 45.0
+
+[node name="TentacleGuy5" parent="." instance=ExtResource( 6 )]
+position = Vector2( -193, -55 )
+move_speed = 45.0
+
+[node name="TentacleGuy6" parent="." instance=ExtResource( 6 )]
+position = Vector2( -220, -36 )
+move_speed = 45.0
+
+[node name="TentacleGuy7" parent="." instance=ExtResource( 6 )]
+position = Vector2( -189, -94 )
+move_speed = 45.0
+
+[node name="TentacleGuy8" parent="." instance=ExtResource( 6 )]
+position = Vector2( -216, -75 )
+move_speed = 45.0
+
+[node name="TentacleGuy9" parent="." instance=ExtResource( 6 )]
+position = Vector2( -121, -8 )
+move_speed = 45.0
+
+[node name="TentacleGuy10" parent="." instance=ExtResource( 6 )]
+position = Vector2( -148, 11 )
+move_speed = 45.0
+
+[node name="TentacleGuy11" parent="." instance=ExtResource( 6 )]
+position = Vector2( -117, -47 )
+move_speed = 45.0
+
+[node name="TentacleGuy12" parent="." instance=ExtResource( 6 )]
+position = Vector2( -144, -28 )
+move_speed = 45.0
+
+[node name="TentacleGuy13" parent="." instance=ExtResource( 6 )]
+position = Vector2( -179, 13 )
+move_speed = 45.0
+
+[node name="TentacleGuy14" parent="." instance=ExtResource( 6 )]
+position = Vector2( -206, 32 )
+move_speed = 45.0
+
+[node name="TentacleGuy15" parent="." instance=ExtResource( 6 )]
+position = Vector2( -175, -26 )
+move_speed = 45.0
+
+[node name="TentacleGuy16" parent="." instance=ExtResource( 6 )]
+position = Vector2( -202, -7 )
 move_speed = 45.0
 
 [node name="LuchaBomber" parent="." instance=ExtResource( 7 )]
-health = 25
+position = Vector2( -99, -27 )
